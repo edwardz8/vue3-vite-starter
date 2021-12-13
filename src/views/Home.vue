@@ -1,5 +1,64 @@
-<script setup>
-import ButtonRepo from '@/components/ButtonRepo.vue'
+<script>
+import * as fcl from "@onflow/fcl"
+import * as t from "@onflow/types"
+
+fcl.config()
+  .put("accessNode.api", "https://access-testnet.onflow.org")
+  .put("challenge.handshake", "https://fcl-discovery.onflow.org/testnet/authn")
+  .put("OxProfile", "Oxba1132be8Bf82fe2")
+
+const profile = undefined
+
+const script = fcl.script`
+      import Profile from OxProfile
+
+      pub fun main(address: Address): Profile.ReadOnly? {
+        return Profile.read(address)
+      }
+  `
+
+const args = fcl.args([
+  fcl.arg(profile?.value?.addr, t.Address)
+])
+
+function send() {
+  fcl.send([script, args]).then(async (result) => console.log(await fcl.decode(result)))
+}
+
+function login() {
+  fcl.logIn()
+}
+
+function logout() {
+  fcl.unauthenticate()
+}
+
+fcl.currentUser().subscribe(setUser)
+
+function setUser(user) {
+  console.log(user)
+  profile.value = user
+}
+
+/* function send() {
+  fcl.send([
+    fcl.script`
+      
+    `,
+    fcl.proposer(fcl.authz),
+    fcl.authorizations([fcl.authz]),
+    fcl.payer(fcl.authz),
+  ])
+} */
+
+export default {
+  methods: {
+    login,
+    logout,
+    send
+  }
+}
+
 </script>
 
 <template>
@@ -7,23 +66,11 @@ import ButtonRepo from '@/components/ButtonRepo.vue'
     <div
       class="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between"
     >
-      <h2
-        class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10"
-      >
-        Ready to dive in?
-        <br />
-        <span class="text-indigo-600">Vite + Vue 3 + Tailwind CSS</span>
-      </h2>
       <div class="flex mt-8 lg:flex-shrink-0 lg:mt-0">
-        <div class="inline-flex rounded-md shadow">
-          <router-link
-            to="/about"
-            class="inline-flex items-center justify-center px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none"
-            >Next Page</router-link
-          >
-        </div>
-        <ButtonRepo />
+        <button @click="login">Login</button>
+        <button class="ml-4 bg-green-300 px-4" @click="send">Send</button>
       </div>
+      <button @click="logout">Log Out</button>
     </div>
   </div>
 </template>

@@ -7,8 +7,16 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@onflow/fcl": "^0.0.77",
+    "@onflow/types": "^0.0.6",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "events": "^3.3.0",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.4",
     "vue": "^3.2.23",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "web3": "^1.6.1"
   },
   "devDependencies": {
     "@headlessui/vue": "^1.4.2",
