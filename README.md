@@ -3,8 +3,17 @@
 Cadence
 Flow with fcl login and unauthenticate (logout)
 
+Piñata Party: https://github.com/edwardz8/pinata-party  
+
+Flow + Vue 3 Project: https://github.com/edwardz8/vue3-vite-starter 
+
+Create vue 3 project and then once that's setup run:
+
+mkdir flow-project
+cd flow and create flow.json
 
 
+flow project init 
 
 This template also includes:
 
