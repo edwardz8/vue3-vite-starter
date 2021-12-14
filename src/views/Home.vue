@@ -6,6 +6,9 @@ fcl.config()
   .put("accessNode.api", "https://access-testnet.onflow.org")
   .put("challenge.handshake", "https://fcl-discovery.onflow.org/testnet/authn")
   .put("OxProfile", "Oxba1132be8Bf82fe2")
+  .put("accessNode.api", process.env.VUE_APP_ACCESS_NODE)
+  .put("challenge.handshake", process.env.VUE_APP_WALLET_DISCOVERY)
+  .put("0xProfile", process.env.VUE_APP_CONTRACT_PROFILE)
 
 const profile = undefined
 

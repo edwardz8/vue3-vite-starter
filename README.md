@@ -12,8 +12,16 @@ Create vue 3 project and then once that's setup run:
 mkdir flow-project
 cd flow and create flow.json
 
-
 flow project init 
+
+add the following to .env file
+
+```
+VUE_APP_ACCESS_NODE=http://localhost:8080
+VUE_APP_WALLET_DISCOVERY=https://fcl-discovery.onflow.org/testnet/authn
+VUE_APP_CONTRACT_PROFILE=0xf8d6e0586b0a20c7
+
+```
 
 This template also includes:
 
