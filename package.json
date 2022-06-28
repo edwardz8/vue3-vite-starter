@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@onflow/fcl": "^0.0.77",
-    "@onflow/types": "^0.0.6",
+    "@onflow/types": "^1.0.2",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
     "events": "^3.3.0",
